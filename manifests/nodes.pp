@@ -4,6 +4,7 @@ node 'puppet' {
   }
 }
 node 'ip-10-1-165-117' {
+  include puppet
   file { '/tmp/puppet-ip-10-1-165-117.txt':
     content => "Hello world",
   }
