@@ -1,0 +1,14 @@
+{
+  "name": "cordata-git",
+  "version": "0.1.0",
+  "author": "cordata",
+  "summary": "Simple module to install git",
+  "license": "Apache 2.0",
+  "source": "https://github.com/matthewbga/cordata-git.git",
+  "project_page": "https://github.com/matthewbga/cordata-git",
+  "issues_url": "https://github.com/matthewbga/cordata-git/issues",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  ]
+}
+
