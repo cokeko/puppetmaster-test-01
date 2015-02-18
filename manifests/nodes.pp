@@ -9,4 +9,10 @@ node default {
     content => "Hello world",
   }
 }
+node kopuppet01 {
+  include puppet
+  file { '/tmp/hello.txt':
+    content => "Hello world.\n"
+  }
+}
 	
