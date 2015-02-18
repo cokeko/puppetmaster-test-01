@@ -7,7 +7,7 @@ class puppet {
     source => 'puppet:///modules/puppet/pull-updates.sh',
     mode   => '0755',
   }
-  file { 'home/ubuntu/.ssh/id_rsa':
+  file { '/home/ubuntu/.ssh/id_rsa':
     source => 'puppet:///modules/puppet/ubuntu.priv',
     owner  => 'ubuntu',
     mode   => '0600',
