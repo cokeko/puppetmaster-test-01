@@ -1,5 +1,5 @@
 SSH = 'ssh -A -i ~/.ssh/mb30.pem -l ubuntu'
-REPO = 'git@github.com:cokeko/puppetmaster-test-01.git'
+REPO = 'https://github.com/cokeko/puppetmaster-test-01.git'
 
 desc "Run puppet on ENV['CLIENT']"
 task :apply do
@@ -13,13 +13,14 @@ task :bootstrap do
   client = ENV['CLIENT']
   hostname = ENV['HOSTNAME'] || client
   commands = <<BOOTSTRAP
-sudo hostname #{hostname] && \
-sudo su - c 'echo #{hostname} >/etc/hostname' && \
+sudo hostname #{hostname} && \
+sudo su - -c 'echo #{hostname} >/etc/hostname' && \
 wget http://apt.puppetlabs.com/puppetlabs-release-trusty.deb && \
 sudo dpkg -i puppetlabs-release-trusty.deb && \
 sudo apt-get update && sudo apt-get -y install git puppet && \
+echo -e \"Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 git clone #{REPO} puppet && \
 sudo puppet apply --modulepath=/home/ubuntu/puppet/modules /home/ubuntu/puppet/manifests/site.pp
 BOOTSTRAP
-  sh "#{SSH} #{client} '#{commands}'"
+  sh "#{SSH} #{client} \"#{commands}\""
 end
