@@ -13,6 +13,7 @@ node 'kopuppet01' {
 }
 node 'kopuppet02' {
   include puppet
+  include memcached
 }
 node 'puppet' {
   file { '/tmp/puppet.hi':
