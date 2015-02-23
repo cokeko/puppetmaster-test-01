@@ -9,10 +9,10 @@ node 'kopuppet01' {
   file { '/tmp/hello.txt':
     content => "Hello world.\nHow;s Trix?\n"
   }
+  include memcached
 }
 node 'kopuppet02' {
   include puppet
-  include memcached
 }
 node 'puppet' {
   file { '/tmp/puppet.hi':
