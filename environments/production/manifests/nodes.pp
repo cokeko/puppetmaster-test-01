@@ -1,12 +1,18 @@
 node default {
   include puppet
   include security
+  include git
+  #include vim
   service { 'puppet':
     enable => true,
     ensure => running,
   }
   file { '/tmp/puppet-ip-10-1-165-117.txt':
     content => "Hello world",
+  }
+  class { 'vim':
+    user	=> "root",
+    home_dir	=> "/root",
   }
 }
 node 'kopuppet01' {

@@ -1,14 +1,13 @@
 {
-  "name": "cordata-git",
-  "version": "0.1.0",
-  "author": "cordata",
-  "summary": "Simple module to install git",
-  "license": "Apache 2.0",
-  "source": "https://github.com/matthewbga/cordata-git.git",
-  "project_page": "https://github.com/matthewbga/cordata-git",
-  "issues_url": "https://github.com/matthewbga/cordata-git/issues",
+  "name": "puppetlabs-git",
+  "version": "0.3.0",
+  "author": "Puppet Labs",
+  "summary": "Module for installing git.",
+  "license": "Apache License, Version 2.0",
+  "source": "https://github.com/puppetlabs/puppetlabs-git",
+  "project_page": "https://github.com/puppetlabs/puppetlabs-git",
+  "issues_url": "https://tickets.puppetlabs.com/browse/MODULES",
   "dependencies": [
-    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+    {"name":"puppetlabs/vcsrepo","version_requirement":">=0.1.0"}
   ]
 }
-

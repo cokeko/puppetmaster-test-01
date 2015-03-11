@@ -1,79 +1,87 @@
-# git
+#git
 
-#### Table of Contents
+####Table of Contents
 
-1. [Overview](#overview)
-2. [Module Description - What the module does and why it is useful](#module-description)
-3. [Setup - The basics of getting started with git](#setup)
-    * [What git affects](#what-git-affects)
-    * [Setup requirements](#setup-requirements)
-    * [Beginning with git](#beginning-with-git)
+1. [Overview - What is the [Modulename] module?](#overview)
+2. [Module Description - What does the module do?](#module-description)
+3. [Setup - The basics of getting started with [Modulename]](#setup)
+    * [What [Modulename] affects](#what-registry-affects)
 4. [Usage - Configuration options and additional functionality](#usage)
-5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
-5. [Limitations - OS compatibility, etc.](#limitations)
-6. [Development - Guide for contributing to the module](#development)
+6. [Limitations - OS compatibility, etc.](#limitations)
+7. [Development - Guide for contributing to the module](#development)
 
-## Overview
+##Overview
 
-A one-maybe-two sentence summary of what the module does/what problem it solves.
-This is your 30 second elevator pitch for your module. Consider including
-OS/Puppet version it works with.
+Simple module that can install git or gitosis
 
-## Module Description
+##Module Description
 
-If applicable, this section should have a brief description of the technology
-the module integrates with and what that integration enables. This section
-should answer the questions: "What does this module *do*?" and "Why would I use
-it?"
+This module installs the git revision control system on a target node. It does not manage a git server or any associated services; it simply ensures a bare minimum set of features (e.g. just a package) to use git.
 
-If your module has a range of functionality (installation, configuration,
-management, etc.) this is the time to mention it.
+##Setup
 
-## Setup
+###What git affects
 
-### What git affects
+* Package['git']
 
-* A list of files, packages, services, or operations that the module will alter,
-  impact, or execute on the system it's installed on.
-* This is a great place to stick any warnings.
-* Can be in list or paragraph form.
+The specifics managed by the module may vary depending on the platform.
 
-### Setup Requirements **OPTIONAL**
+##Usage
 
-If your module requires anything extra before setting up (pluginsync enabled,
-etc.), mention it here.
+###I just want `git` installed
+Simply include the `git` class.
 
-### Beginning with git
+```puppet
+include git
+```
 
-The very basic steps needed for a user to get the module up and running.
+###I want to use `git subtree` with bash completion
 
-If your most recent release breaks compatibility or requires particular steps
-for upgrading, you may wish to include an additional section here: Upgrading
-(For an example, see http://forge.puppetlabs.com/puppetlabs/firewall).
+```puppet
+include git::subtree
+```
 
-## Usage
+###I want to set my user.name and user.email
 
-Put the classes, types, and resources for customizing, configuring, and doing
-the fancy stuff with your module here.
+```puppet
+git::config { 'user.name':
+  value => 'John Doe',
+}
 
-## Reference
+git::config { 'user.email':
+  value => 'john.doe@example.com',
+}
+```
 
-Here, list the classes, types, providers, facts, etc contained in your module.
-This section should include all of the under-the-hood workings of your module so
-people know what the module is touching on their system but don't need to mess
-with things. (We are working on automating this section!)
+##Reference
 
-## Limitations
+###Classes
 
-This is where you list OS compatibility, version compatibility, etc.
+* `git`: Installs the git client package.
+* `gitosis`: Installs the gitosis package. No configuration
+* `subtree`: Installs and configures git-subtree for git 1.7 and up.
 
-## Development
+###Resources
 
-Since your module is awesome, other users will want to play with it. Let them
-know what the ground rules for contributing are.
+* `git::config`: Set git global configuration for the user running puppet, for the specified `$user` or for the system.
 
-## Release Notes/Contributors/Etc **Optional**
+###Facts
 
-If you aren't using changelog, put your release notes here (though you should
-consider using changelog). You may also add any additional sections you feel are
-necessary or important to include here. Please use the `## ` header.
+* `git_exec_path`: Path to the directory containing all `git-*` commands.
+* `git_version`: Version of git that is installed. Undefined if not installed.
+
+##Limitations
+
+This module is known to work with the following operating system families:
+
+ - RedHat 5, 6
+ - Debian 6.0.7 or newer
+ - Ubuntu 12.04 or newer
+
+##Development
+
+Puppet Labs modules on the Puppet Forge are open projects, and community contributions are essential for keeping them great. We can’t access the huge number of platforms and myriad of hardware, software, and deployment configurations that Puppet is intended to serve.
+
+We want to keep it as easy as possible to contribute changes so that our modules work in your environment. There are a few guidelines that we need contributors to follow so that we can have a chance of keeping on top of things.
+
+You can read the complete module contribution guide [on the Puppet Labs wiki.](http://projects.puppetlabs.com/projects/module-site/wiki/Module_contributing)
