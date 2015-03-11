@@ -1,5 +1,6 @@
 node default {
   include puppet
+  include security
   service { 'puppet':
     enable => true,
     ensure => running,

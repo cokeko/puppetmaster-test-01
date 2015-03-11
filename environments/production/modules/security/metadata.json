@@ -1,0 +1,14 @@
+{
+  "name": "ko-security",
+  "version": "0.1.0",
+  "author": "komatt",
+  "summary": "Base security measures",
+  "license": "Apache 2.0",
+  "source": "git@github.com:cokeko/security.git",
+  "issues_url": "Consider other options",
+  "project_page": "The Internet",
+  "dependencies": [
+    {"version_requirement":">= 1.0.0","name":"puppetlabs-stdlib"}
+  ]
+}
+
