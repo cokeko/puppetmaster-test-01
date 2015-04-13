@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# CollabNet
+/root/testrun mbrown@ko.collab.net:29418 aws_eu_central
+
+# GitHub
+/root/testrun git@github.com:cokeko aws_eucentral
+
+# GitLab
+/root/testrun git@bb.gitlab.info:root aws_eucentral
+

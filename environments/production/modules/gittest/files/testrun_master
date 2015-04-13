@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# CollabNet
+/root/testrun ssh://mbrown@ko.collab.net:29418 $TEST_REPO collabnet
+
+# GitHub
+/root/testrun git@github.com:cokeko $TEST_REPO github
+
+# GitLab
+/root/testrun git@bb.gitlab.info:root $TEST_REPO gitlab
+

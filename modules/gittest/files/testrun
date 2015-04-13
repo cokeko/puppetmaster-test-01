@@ -1,0 +1,40 @@
+#/bin/bash
+
+REPO_URL=$1
+REPO_NAME=$2
+
+cd
+git clone ssh://$REPO_URL/$REPO_NAME.git
+cd $REPO_NAME
+
+BEGIN_TIME=$(date -u)
+wget http://speedtest.tweak.nl/100mb.bin
+git add ./
+git commit -m "Add initial large (100MB) file"
+git push
+date -u
+git mv 100mb.bin grande.bin
+git add .
+git commit -m "Rename the big file to grande.bin"
+git push
+date -u
+wget http://speedtest.tweak.nl/50mb.bin
+mv -f 50mb.bin grande.bin
+git add .
+git commit -m "Update grande.bin with smaller (50MB) version"
+git push
+date -u
+wget http://speedtest.tweak.nl/500mb.bin
+mv -f 500mb.bin grande.bin
+git add .
+git commit -m "Update grande.bin with large (500MB) version"
+git push
+date -u
+wget http://speedtest.tweak.nl/250mb.bin
+mv -f 250mb.bin grande.bin
+git add .
+git commit -m "Updated grande.bin with smaller (250MB) version."
+git push
+END_TIME=$(date -u)
+
+echo "$REPO_NAME\t$BEGIN_TIME\t$END_TIME"

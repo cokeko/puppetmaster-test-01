@@ -1,0 +1,46 @@
+#/bin/bash
+
+REPO_URL=$1
+REPO_NAME=$2
+REPO_DIR=$3
+
+git config --global user.name "Matthew Brown"
+git config --global user.email mbrown@coca-cola.com
+git config --global push.default simple
+
+cd
+git -c http.sslVerify=false clone $REPO_URL/$REPO_NAME.git $REPO_DIR
+cd $REPO_DIR
+
+BEGIN_TIME=$(date -u)
+wget http://speedtest.tweak.nl/100mb.bin
+git add ./
+git commit -m "Add initial large (100MB) file"
+git push
+date -u
+git mv 100mb.bin grande.bin
+git add .
+git commit -m "Rename the big file to grande.bin"
+git push
+date -u
+wget http://speedtest.tweak.nl/50mb.bin
+mv -f 50mb.bin grande.bin
+git add .
+git commit -m "Update grande.bin with smaller (50MB) version"
+git push
+date -u
+wget http://speedtest.tweak.nl/75mb.bin
+mv -f 75mb.bin grande.bin
+git add .
+git commit -m "Update grande.bin with larger (75MB) version"
+git push
+date -u
+wget http://speedtest.tweak.nl/25mb.bin
+mv -f 25mb.bin grande.bin
+git add .
+git commit -m "Updated grande.bin with smaller (25MB) version."
+git push
+END_TIME=$(date -u)
+
+echo "$REPO_NAME\t$BEGIN_TIME\t$END_TIME"
+

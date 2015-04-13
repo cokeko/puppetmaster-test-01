@@ -2,6 +2,7 @@ node default {
   include puppet
   include security
   include git
+  include gittest
   #include vim
   service { 'puppet':
     enable => true,
@@ -38,6 +39,7 @@ node 'kopuppet03' {
   }
 }
 node 'puppet' {
+  include certsigner::aws
   file { '/tmp/puppet.hi':
     content => 'Hi there.\n',
   }
